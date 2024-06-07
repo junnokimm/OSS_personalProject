@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Book</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="guestbook.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap');
+        .guestbook-entry {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+        .guestbook-entry .name {
+            
+        }
+        .guestbook-entry .content {
+            
+        }
+        .guestbook-entry .timestamp {
+            font-style: italic;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+<header id="header">
+    <nav class="menu">
+        <ul>
+            <li><a href="index.html"><b>Home</b></a></li>
+            <li><a href="about.html"><b>About</b></a></li>
+            <li><a href="guestbook.html"><b>Guest Book</b></a></li>
+        </ul>
+    </nav>
+</header>
+<div class="list">
+    <div class="three">
+        <h1><br><br> Leave Your Message! </h1>
+        <form id="guestbook-form">
+            <label for="name">Your Name : </label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="message">Your Message : </label>
+            <textarea id="message" name="message" required></textarea><br>
+            <button type="submit">Submit</button>
+        </form>
+        <ul id="guestbook-entries">
+        </ul>
+    </div>
+</div>
+
+<script>
+    document.getElementById('guestbook-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var nameInput = document.getElementById('name');
+        var messageInput = document.getElementById('message');
+        var name = nameInput.value;
+        var message = messageInput.value;
+        var timestamp = new Date().toLocaleString();
+
+        var newEntry = document.createElement('li');
+        newEntry.classList.add('guestbook-entry');
+        newEntry.innerHTML = `
+            <div class="name">이름 : ${name}</div>
+            <div class="content">내용 : ${message}</div>
+            <div class="timestamp">작성시각 : ${timestamp}</div>
+        `;
+        document.getElementById('guestbook-entries').appendChild(newEntry);
+
+        nameInput.value = '';
+        messageInput.value = '';
+    });
+</script>
+</body>
+</html>
